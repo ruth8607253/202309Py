@@ -1,6 +1,6 @@
 # 總綱
 環境建構
-[連結](./環境建構.ipynb)
+[連結](./環境建構/環境建構.ipynb)
 
 Markdown
 [連結](./Markdown.ipynb)
