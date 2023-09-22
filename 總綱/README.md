@@ -8,8 +8,11 @@ Markdown
 git、lenux與終端機
 [連結](./git、lenux與終端機.ipynb)
 
-python基礎與資料輸出
-[連結](./python基礎與資料輸出.ipynb)
+python基礎
+[連結](./python基礎.ipynb)
+
+數值計算
+[連結](./數值計算.ipynb)
 
 if & 關係運算子
 [連結](./if&關係運算子.ipynb)
