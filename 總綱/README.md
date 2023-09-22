@@ -5,11 +5,14 @@
 Markdown
 [連結](./Markdown.ipynb)
 
-終端機
-[連結](./終端機.ipynb)
+git、lenux與終端機
+[連結](./git、lenux與終端機.ipynb)
 
 python基礎與資料輸出
 [連結](./python基礎與資料輸出.ipynb)
 
-各種錯誤
+if & 關係運算子
+[連結](./if&關係運算子.ipynb)
+
+各種人為錯誤
 [連結](./各種錯誤.ipynb)
