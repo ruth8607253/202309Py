@@ -23,5 +23,9 @@ python基礎
 if & 關係運算子
 [連結](./if&關係運算子.ipynb)
 
+Loop
+[連結](./Loop.ipynb)
+
+
 各種錯誤
 [連結](./各種錯誤.ipynb)
