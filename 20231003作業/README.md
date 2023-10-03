@@ -1,2 +1,6 @@
 # 20231003作業
-[連結]()
+靜態網頁
+[連結](https://jing-tai-ye-mian.onrender.com)
+
+動態網頁
+[連結](https://dong-tai-ye-mian.onrender.com)
