@@ -1,2 +1,2 @@
-#放灌了什麼資料的地方
-PyInputPlus >= 0.2.12
+PyInputPlus
+requests
