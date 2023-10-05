@@ -5,8 +5,8 @@
 Markdown
 [連結](./Markdown.ipynb)
 
-git、lenux與終端機
-[連結](./git、lenux與終端機.ipynb)
+git & lenux
+[連結](./git、lenux與終端機/git&lenux.ipynb)
 
 python基礎
 [連結](./python基礎.ipynb)
@@ -25,7 +25,6 @@ if & 關係運算子
 
 Loop
 [連結](./Loop.ipynb)
-
 
 各種錯誤
 [連結](./各種錯誤.ipynb)
