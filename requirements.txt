@@ -1,2 +1,5 @@
 PyInputPlus
 requests
+Pillow
+ttkbootstrap
+yfinance
