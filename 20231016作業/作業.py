@@ -2,7 +2,6 @@ import yfinance as yf
 import tkinter as tk
 from tkinter import ttk
 from tkinter.simpledialog import Dialog
-from tkinter import messagebox
 import csv
 
 #抓股票
@@ -31,10 +30,7 @@ class Frame(ttk.LabelFrame):
         with open('0050.csv', 'r', encoding='UTF-8') as file:
             data=csv.reader(file)
             next(data)
-            text=[]
-            text.append([f"日期：{0}",f"開盤價：{1}",f"最高價：{2}",f"最低價：{3}"
-                        ,f"收盤價：{4}",f"調整後收盤價：{5}",f"成交量：{6}"])
-            
+            self.text_data=[]
             for t in data:
                 self.tree.insert("",tk.END,values=t)
             self.tree.pack()
@@ -45,31 +41,21 @@ class Frame(ttk.LabelFrame):
     
     def item(self,event):
         item_id=self.tree.selection()[0]
-        item_dict=self.tree.item(item_id)
+        self.text_data= self.tree.item(item_id)['values']
+        print(self.text_data)
+        dialog = GetPassword(self,self.text_data)
 
-    def choise(self):
-        print(self.user.get())
-
-
-#還沒辦法顯示
-class GetPassword(Dialog,Frame):
+# 點擊後小視窗
+class GetPassword(Dialog):
+    def __init__(self, parent,text_data):
+        self.text_data=text_data
+        super().__init__(parent)
+    #股票
     def body(self, master):
-        self.title(f"0050{Frame.date}資料")
+        self.title(f"{self.text_data[0]}資料")
 
-        data1=tk.Label(master, text='開盤價：').grid(row=0, sticky=tk.W)
-        data2=tk.Label(master, text='最高價：').grid(row=1, sticky=tk.W)
-        data3=tk.Label(master, text='最低價：').grid(row=2, sticky=tk.W)
-        data4=tk.Label(master, text='收盤價：').grid(row=3, sticky=tk.W)
-        data5=tk.Label(master, text='調整後收盤價：').grid(row=4, sticky=tk.W)
-        data6=tk.Label(master, text='成交量：').grid(row=5, sticky=tk.W)
-
-        data1.grid(row=0, column=1, sticky=tk.W)
-        data2.grid(row=1, column=1, sticky=tk.W)
-        data3.grid(row=2, column=1, sticky=tk.W)
-        data4.grid(row=3, column=1, sticky=tk.W)
-        data5.grid(row=4, column=1, sticky=tk.W)
-        data6.grid(row=5, column=1, sticky=tk.W)
-        self.pack(expand=1,fill="both",padx=10,pady=20)
+        for i, label in enumerate(["開盤價：", "最高價：", "最低價：", "收盤價：", "調整後收盤價：", "成交量："]):
+            tk.Label(master, text=f"{label}{self.text_data[i+1]}").grid(row=i, sticky=tk.W)
 
     #確認/取消鍵
     def buttonbox(self):
@@ -84,14 +70,6 @@ class GetPassword(Dialog,Frame):
         self.bind("<Escape>", self.cancel)
 
         box.pack()
-
-'''
-不知道這啥
-root = Tk()
-dialog = GetPassword(root)
-'''
-
-
 
 def main():
     window=Window()

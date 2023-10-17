@@ -11,7 +11,6 @@ class GetPassword(Dialog):
         self.newpw1 = tk.Entry(master, width=16, show='*')
         self.newpw2 = tk.Entry(master, width=16, show='*')
 
-        self.oldpw.grid(row=0, column=1, sticky=W)
         self.newpw1.grid(row=1, column=1, sticky=W)
         self.newpw2.grid(row=2, column=1, sticky=W)
         return self.oldpw
