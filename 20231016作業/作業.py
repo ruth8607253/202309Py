@@ -18,14 +18,14 @@ class Window(tk.Tk):
 class Frame(ttk.LabelFrame):
     def __init__(self,master,title, **kwargs):
         super().__init__(master=master,text=title,**kwargs)
-        self.tree=ttk.Treeview(self,columns=["date","open","high","low","close","adjclose","volume"],show="headings")
-        self.tree.heading("date",text="日期")
-        self.tree.heading("open",text="開盤價")
-        self.tree.heading("high",text="最高價")
-        self.tree.heading("low",text="最低價")
-        self.tree.heading("close",text="收盤價")
-        self.tree.heading("adjclose",text="調整後收盤價")
-        self.tree.heading("volume",text="成交量")
+        self.tree=ttk.Treeview(self,columns=[1,2,3,4,5,6,7],show="headings")
+        self.tree.heading(1,text="日期")
+        self.tree.heading(2,text="開盤價")
+        self.tree.heading(3,text="最高價")
+        self.tree.heading(4,text="最低價")
+        self.tree.heading(5,text="收盤價")
+        self.tree.heading(6,text="調整後收盤價")
+        self.tree.heading(7,text="成交量")
 
         with open('0050.csv', 'r', encoding='UTF-8') as file:
             data=csv.reader(file)
