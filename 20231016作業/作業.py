@@ -38,7 +38,8 @@ class Frame(ttk.LabelFrame):
         self.tree.bind("<<TreeviewSelect>>",self.item)
 
         self.pack(expand=1,fill="both",padx=10,pady=20)
-    
+
+            
     def item(self,event):
         item_id=self.tree.selection()[0]
         self.text_data= self.tree.item(item_id)['values']
