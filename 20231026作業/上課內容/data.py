@@ -36,7 +36,7 @@ def __table(con:sqlite3.Connection):
             "地址"	TEXT NOT NULL,
             "資料更新時間"	TEXT NOT NULL,
             PRIMARY KEY("ID" AUTOINCREMENT),
-            UNQIUE("站點名稱","資料更新時間") ON CONFLICT PREPLACE
+            UNIQUE(站點名稱,資料更新時間) ON CONFLICT REPLACE
         );
         '''
     )
@@ -51,9 +51,6 @@ def __input_data(con:sqlite3.Connection,values:list[any])->None: #不會傳出�
 	'''
 	cur.execute(sql,values)
 	con.commit()
- 
-
-
 
 #更新並把資料存進SQLlite
 def SQL():
