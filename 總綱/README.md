@@ -33,7 +33,7 @@ Flask
 [連結](./Flask.ipynb)
 
 Jinja
-[連結](./Jinja.ipynb)
+[連結](./Jinja/Jinja.ipynb)
 
 Render
 [連結](./Render/Render.ipynb)
