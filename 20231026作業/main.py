@@ -19,7 +19,7 @@ def main():
         t.cancel()
         window.destroy()
 
-    def update_data()->Timer:
+    def update_data():
         data.SQL()
         global t
         t=Timer(10,update_data) 

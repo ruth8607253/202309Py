@@ -1,5 +1,6 @@
 import requests
 import sqlite3
+import datetime
 
 __all__=["SQL"] 
 
@@ -24,6 +25,7 @@ def __table(con:sqlite3.Connection):
             "空品區"	TEXT NOT NULL,
             "測站類型"	TEXT NOT NULL,
             "測站地址"	TEXT NOT NULL,
+            "資料更新時間" DATETIME NOT NULL,
             PRIMARY KEY(測站編號),
             UNIQUE(城市,測站名稱) ON CONFLICT REPLACE
         );
@@ -32,20 +34,21 @@ def __table(con:sqlite3.Connection):
     con.commit()
 
 # 輸入資料到SQLlite裡
-def __input_data(con:sqlite3.Connection,values:list[any])->None:
-	cur=con.cursor()
-	sql='''
-	REPLACE INTO 觀測站(測站編號,城市,測站名稱,空品區,測站類型,測站地址)
-	values(?,?,?,?,?,?)
-	'''
-	cur.execute(sql,values)
-	con.commit()
+def __input_data(con: sqlite3.Connection, values: list[any]) -> None:
+    cur = con.cursor()
+    cur_time = datetime.datetime.now()
+    sql = '''
+    REPLACE INTO 觀測站(測站編號, 城市, 測站名稱, 空品區, 測站類型, 測站地址, 資料更新時間)
+    values(?, ?, ?, ?, ?, ?, ?)
+    '''
+    cur.execute(sql, values + [cur_time])
+    con.commit()
 
 #更新並把資料存進SQLlite
 def SQL():
     data=__download()
     con=sqlite3.connect("a.db")
-    __table(con[ "records"])
-    for item in data:
-        __input_data(con,[item["siteid"],item["county"],item["sitename"],item["areaname"],item["sitetype"],item["twd97lon"],item["twd97lat"],item["siteaddress"]])
+    __table(con)
+    for item in data["records"]:
+        __input_data(con,[item["siteid"],item["county"],item["sitename"],item["areaname"],item["sitetype"],item["siteaddress"]])
     con.close()
