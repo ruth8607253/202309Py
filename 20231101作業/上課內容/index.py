@@ -20,13 +20,12 @@ class Window(tk.Tk):
         topFrame.pack(pady=30)
 
         # 搜尋
-        searchFrame = tk.Frame(self)
-        tk.Label(searchFrame, text="搜尋：").pack(side="left", padx=5, pady=10)
-        self.e = tk.StringVar()
-        tk.Entry(searchFrame, width=40, textvariable=self.e).pack(side="left")
-        searchButton = tk.Button(searchFrame, text="執行", state="normal", command=self.perform_search)
-        searchButton.pack(side="right")
-        searchFrame.pack()
+        middleFrame = ttk.LabelFrame(self)
+        tk.Label(middleFrame, text="搜尋：").pack(side="left")
+        search_entry = tk.Entry(middleFrame)
+        search_entry.bind("<KeyRelease>",self.OnEntryClick)
+        search_entry.pack(side="left")
+        middleFrame.pack(fill="x",padx=20)
 
         # 建立treeview
         bottomFrame=tk.Frame(self)
@@ -35,18 +34,18 @@ class Window(tk.Tk):
         vsb=ttk.Scrollbar(bottomFrame,orient="vertical",command=self.youbikeTreeView.yview)
         vsb.pack(side="left",fill="y")
         self.youbikeTreeView.configure(yscrollcommand=vsb.set)
-        bottomFrame.pack(pady=10)
-
-    def perform_search(self):
-        search_query = self.e.get()
-        search_results = datasource.search_sitename(search_query)
-        if search_results:
-            for i in self.youbikeTreeView.get_children():
-                self.youbikeTreeView.delete(i)
-            for result in search_results:
-                self.youbikeTreeView.insert("", "end", values=result)
-
-        self.e.set("")
+        bottomFrame.pack(padx=10,pady=10)
+    
+    # 抓取使用者打出來的字
+    def OnEntryClick(self,event):
+        searchEntry = event.widget
+        input_word=searchEntry.get()
+        if input_word == "":
+            lastest_data=datasource.lastest_datetime_data()
+            self.youbikeTreeView.update_content(lastest_data)
+        else:
+            search_data = datasource.search_sitename(word=input_word)
+            self.youbikeTreeView.update_content(search_data)
 
 def main(): 
     def update_data(w:Window)->None:
