@@ -4,3 +4,4 @@ Pillow
 ttkbootstrap
 yfinance
 tkintermapview
+psycopg2-binary
