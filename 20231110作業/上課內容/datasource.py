@@ -43,6 +43,7 @@ def insert_data(conn,values:list[any])->None:
     conn.commit()
     cursor.close()
 
+#  下載、更新資料庫
 def updata_render_data():
     data=download_youbike_data()
     conn=psycopg2.connect(database=password.database,
@@ -74,4 +75,26 @@ def lastest_datetime_data()->list[tuple]:
     cursor.close()
     conn.close()
 
+    return rows
+
+def search_sitename(word:str):
+    conn=psycopg2.connect(database=password.database,
+                                user=password.user,
+                                password=password.password,
+                                host=password.host,
+                                port=password.port)
+    cursor=conn.cursor
+    sql='''
+        SELECT *
+        FROM 台北市youbike
+        WHERE (更新時間,站點名稱) IN (
+            SELECT MAX(更新時間),站點名稱
+            FROM 台北市youbike
+            GROUP BY 站點名稱
+        )  AND 站點名稱 LIKE %s
+        '''
+    cursor.execute(sql,[f'%{word}%'])
+    rows=cursor.fetchall()
+    cursor.close()
+    conn.close()
     return rows
