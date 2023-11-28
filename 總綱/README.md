@@ -5,8 +5,8 @@
 Markdown
 [連結](./Markdown.ipynb)
 
-git & lenux
-[連結](./git、lenux與終端機/git&lenux.ipynb)
+git & linux
+[連結](./git、linux與終端機/git&linux.ipynb)
 
 python基礎
 [連結](./python基礎.ipynb)
